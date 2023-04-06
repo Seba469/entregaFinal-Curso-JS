@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/d5476f1157.js" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Document</title>
+</head>
+<body id="bodyTienda">
+    
+    <aside id="asideCarrito" class="disable">
+        
+        <div class="tituloCarrito">
+            <h2>Carrito de compras</h2>
+            <button id="botonCerrarCarrito"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <div class="contenedorCarrito">
+            <p id="carritoVacio" class="carritoVacio disable">Tu carrito esta vacio.</p>
+
+            <div id="productosCarrito" class="productosCarrito disable">
+                <!--<div class="productoCarrito">   
+                    <img class="prodCarritoImg" src="../imagenes/adidas.png" alt="imagenProducto">
+                    <div class="tituloProdCarrito">
+                        <small>Nombre</small>
+                        <h3>zapatilla1</h3>
+                    </div>
+                    <div class="cantidadProdCarrito">
+                        <small>Cantidad</small>
+                        <p>1</p>
+                    </div>
+                    <div class="precioProdCarrito">
+                        <small>Precio</small>
+                        <p>1000</p>
+                    </div>
+                    <div class="subtotalProdCarrito">
+                        <small>Subtotal</small>
+                        <p>1000</p>
+                    </div>
+                    <button class="botonBorrar"><i class="fa-solid fa-trash"></i></button>
+                </div>
+
+                <div class="productoCarrito">   
+                    <img class="prodCarritoImg" src="../imagenes/nike.png" alt="imagenProducto">
+                    <div class="tituloProdCarrito">
+                        <small>Nombre</small>
+                        <h3>zapatilla1</h3>
+                    </div>
+                    <div class="cantidadProdCarrito">
+                        <small>Cantidad</small>
+                        <p>1</p>
+                    </div>
+                    <div class="precioProdCarrito">
+                        <small>Precio</small>
+                        <p>1000</p>
+                    </div>
+                    <div class="subtotalProdCarrito">
+                        <small>Subtotal</small>
+                        <p>1000</p>
+                    </div>
+                    <button class="botonBorrar"><i class="fa-solid fa-trash"></i></button>
+                </div>-->
+
+            </div>
+        
+            <div id="accionesCarrito" class="accionesCarrito disable">
+                <div class="accionCarritoIzq">
+                    <button id="vaciarCarrito" class="vaciarCarrito">Vaciar</button>
+                </div>
+                <div class="accionCarritoDer">
+                    <div class="totalCarrito">
+                        <p>Total: </p>
+                        <p id="total">$</p>
+                    </div>
+                    <button id="botonComprar" class="botonComprar">Comprar</button>
+                </div>
+            </div>
+
+            <p id="carritoComprado" class="carritoComprado disable">Gracias por tu compra.</p>
+    </aside>
+
+    <div id="contenedor" class="contenedor">
+
+        <header>
+
+            <h2 class="logo">import Shoes</h2>
+
+            <nav>
+                <ul class="menu">
+                    <li class="itemMenu">
+                        <a class="botonMenu" href="../index.html">Inicio</a>
+                    </li>
+                    <li class="itemMenu">
+                        <a class="botonMenu" href="./tienda.html">Marcas</a>
+                        
+                        <ul class="subMenu">
+                            <li class="itemSubMenu">
+                                <button id="adidas" class="botonCategoria">Adidas</button>
+                            </li>
+                            <li class="itemSubMenu">
+                                <button id="nike" class="botonCategoria">Nike</button>
+                            </li>
+                            <li class="itemSubMenu">
+                                <button id="puma" class="botonCategoria">Puma</button>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="itemMenu">
+                        <button id="botonCarrito" class="botonMenu botonCarrito">Carrito</button>
+                    </li>
+                </ul>
+            </nav>  
+        </header>
+
+        <main class="mainTienda">
+
+            <h2 id="tituloTienda" class="tituloTienda">Todos los productos</h2>
+            <div id="contenedorProductos" class="contenedorProductos">
+            
+                <!--<div class="producto">
+                    <img class="imgProducto" src="../imagenes/adidas.png" alt="imagenProducto">
+                    <div class="detallesProducto">
+                        <h3 class="tituloProducto">zapatilla1</h3>
+                        <p class="precioProducto">1000</p>
+                        <button class="agregarProducto">Agregar</button>
+                    </div>
+                </div>
+    
+                <div class="producto">
+                    <img class="imgProducto" src="../imagenes/nike.png" alt="imagenProducto">
+                    <div class="detallesProducto">
+                        <h3 class="tituloProducto">zapatilla2</h3>
+                        <p class="precioProducto">1000</p>
+                        <button class="agregarProducto">Agregar</button>
+                    </div>
+                </div>
+
+                <div class="producto">
+                    <img class="imgProducto" src="../imagenes/adidas.png" alt="imagenProducto">
+                    <div class="detallesProducto">
+                        <h3 class="tituloProducto">zapatilla1</h3>
+                        <p class="precioProducto">1000</p>
+                        <button class="agregarProducto">Agregar</button>
+                    </div>
+                </div>
+    
+                <div class="producto">
+                    <img class="imgProducto" src="../imagenes/nike.png" alt="imagenProducto">
+                    <div class="detallesProducto">
+                        <h3 class="tituloProducto">zapatilla2</h3>
+                        <p class="precioProducto">1000</p>
+                        <button class="agregarProducto">Agregar</button>
+                    </div>
+                </div>
+
+                <div class="producto">
+                    <img class="imgProducto" src="../imagenes/adidas.png" alt="imagenProducto">
+                    <div class="detallesProducto">
+                        <h3 class="tituloProducto">zapatilla1</h3>
+                        <p class="precioProducto">1000</p>
+                        <button class="agregarProducto">Agregar</button>
+                    </div>
+                </div>
+    
+                <div class="producto">
+                    <img class="imgProducto" src="../imagenes/nike.png" alt="imagenProducto">
+                    <div class="detallesProducto">
+                        <h3 class="tituloProducto">zapatilla2</h3>
+                        <p class="precioProducto">1000</p>
+                        <button class="agregarProducto">Agregar</button>
+                    </div>
+                </div>-->
+            </div>
+        </main>
+    
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>
