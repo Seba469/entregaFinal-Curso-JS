@@ -117,7 +117,7 @@ aside{
     display: flex;
     justify-content: space-between;
     gap: 4rem;
-    /*hola*/
+    margin: 0 2rem;
 }
 
 .botonCerrarCarrito{
@@ -125,6 +125,7 @@ aside{
     background-color: transparent;
     color: var(--clr-white);
     font-size: 1.25rem;
+    cursor: pointer;
 }
 
 .contenedorCarrito{
@@ -140,7 +141,7 @@ aside{
 .productosCarrito{
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: .5rem;
 }
 
 .productoCarrito{
@@ -177,11 +178,16 @@ aside{
 .vaciarCarrito{
     border: 0;
     background-color: var(--clr-grey);
+    border: 2px solid var(--clr-grey);
     padding: 1rem;
-    border-radius: 1rem;
     color: var(--clr-violet);
     text-transform: uppercase;
     cursor: pointer;
+}
+
+.vaciarCarrito:hover{
+    background-color: var(--clr-violet);
+    color: var(--clr-grey);
 }
 
 .accionCarritoDer{
@@ -204,6 +210,11 @@ aside{
     color: var(--clr-grey);
     text-transform: uppercase;
     cursor: pointer;
+}
+
+.botonComprar:hover{
+    background-color: var(--clr-grey);
+    color: var(--clr-violet);
 }
 
 .disable{

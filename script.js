@@ -227,10 +227,10 @@ function borrarDelCarrito (e){
           textTransform: "uppercase",
           fontSize: ".75rem"
         },
-        /*offset: {
+        offset: {
             x: '1.5rem', // horizontal axis - can be a number or a string indicating unity. eg: '2em'
             y: '1.5rem' // vertical axis - can be a number or a string indicating unity. eg: '2em'
-          },*/
+          },
         onClick: function(){} // Callback after click
       }).showToast();
 
@@ -264,12 +264,7 @@ function vaciarCarrito (){
             localStorage.setItem('productosCarrito', JSON.stringify(carrito))
             cargarCarrito()
         }
-      })
-
-    /*carrito.length = 0
-
-    localStorage.setItem('productosCarrito', JSON.stringify(carrito))
-    cargarCarrito()*/
+    })
 }
 
 function total (){
@@ -280,13 +275,33 @@ function total (){
 
 function compraRealizada (){
 
-    carrito.length = 0
-    localStorage.setItem('productosCarrito', JSON.stringify(carrito))
+    Swal.fire({
+        title: 'Finalizar compra?',
+        //text: "You won't be able to revert this!",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si',
+        cancelButtonText: 'Seguir comprando'
+      }).then((result) => {
+        if (result.isConfirmed) {
 
-    carritoVacio.classList.add('disable')
-    productosCarrito.classList.add('disable')
-    accionesCarrito.classList.add('disable')
-    carritoComprado.classList.remove('disable')
+            carrito.length = 0
+            localStorage.setItem('productosCarrito', JSON.stringify(carrito))
+
+            carritoVacio.classList.remove('disable')
+            productosCarrito.classList.add('disable')
+            accionesCarrito.classList.add('disable')
+            carritoComprado.classList.add('disable')
+
+            Swal.fire({
+                title: "Confirmado",
+                text: "Su compra se realizo exitosamente",
+                icon: 'success'
+            })
+        }
+    })
 }
 
 
