@@ -5,7 +5,7 @@
     --clr-black: #000000;
     --clr-grey: #e2e2e2;
     --clr-darkGrey: #999999;
-    --clr-violet: #654258;
+    --clr-violet: #664259;
     --clr-red: #FD0000;
 }
 
@@ -117,6 +117,14 @@ aside{
     display: flex;
     justify-content: space-between;
     gap: 4rem;
+    /*hola*/
+}
+
+.botonCerrarCarrito{
+    border: 0;
+    background-color: transparent;
+    color: var(--clr-white);
+    font-size: 1.25rem;
 }
 
 .contenedorCarrito{

@@ -42,7 +42,11 @@ const botonCerrarCarrito = document.querySelector('#botonCerrarCarrito')
 const carritoVacio = document.querySelector('#carritoVacio')
 const productosCarrito = document.querySelector('#productosCarrito')
 const accionesCarrito = document.querySelector('#accionesCarrito')
-
+let botonesBorrar = document.querySelectorAll('.botonBorrar')
+const botonVaciar = document.querySelector('#vaciarCarrito')
+const totalCompra = document.querySelector('#total')
+const botonComprar = document.querySelector('#botonComprar')
+const carritoComprado = document.querySelector('#carritoComprado')
 /*LLAMADOS DOM*/
 
 function cargarProducto (producto){
@@ -101,6 +105,26 @@ if(carritoLS){
 
 function agregarAlCarrito (e){
 
+    Toastify({
+        text: "Producto agregado",
+        duration: 1500,
+        close: false,
+        gravity: "top", // `top` or `bottom`
+        position: "left", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "#664259",
+          //borderRadius: "2rem",
+          textTransform: "uppercase",
+          fontSize: ".75rem"
+        },
+        offset: {
+            x: '1.5rem', // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+            y: '1.5rem' // vertical axis - can be a number or a string indicating unity. eg: '2em'
+          },
+        onClick: function(){} // Callback after click
+      }).showToast();
+
     const idBoton = e.currentTarget.id;
     const productoSeleccionado = stockProducto.find(p => p.idProducto === idBoton)
 
@@ -117,28 +141,31 @@ function agregarAlCarrito (e){
     cargarCarrito()
 }
 
-function abrirCarrito (){
 
+/* ************************************************* */
+/* ************** ADENTRO DEL CARRITO ************** */
+/* ************************************************* */
+
+
+function abrirCarrito (){
     asideCarrito.classList.remove('disable')
     bodyTienda.style.overflow = ('hidden')
-
-    
 }
 
 function cerrarCarrito (){
-    asideCarrito.classList.add('disable')    
+    asideCarrito.classList.add('disable')
+    bodyTienda.style.overflow = ('scroll')    
 }
 
 function cargarCarrito (){
-    
+
     if(carrito && carrito.length > 0){
         carritoVacio.classList.add('disable')
         productosCarrito.classList.remove('disable')
         accionesCarrito.classList.remove('disable')
+        carritoComprado.classList.add('disable')
 
-        console.log(carrito)
-
-        productosCarrito.innerHTML += ''
+        productosCarrito.innerHTML = ''
 
         carrito.forEach(p => {
 
@@ -170,7 +197,98 @@ function cargarCarrito (){
         carritoVacio.classList.remove('disable')
         productosCarrito.classList.add('disable')
         accionesCarrito.classList.add('disable')
+        carritoComprado.classList.add('disable')
     }
+
+    actualizarBotonesBorrar()
+    botonVaciar.addEventListener('click', vaciarCarrito)
+    total ()
+    botonComprar.addEventListener('click', compraRealizada)
 } 
 
+function actualizarBotonesBorrar (){
+    botonesBorrar = document.querySelectorAll('.botonBorrar')
+
+    botonesBorrar.forEach(boton => boton.addEventListener('click', borrarDelCarrito))
+}
+
+function borrarDelCarrito (e){
+
+    Toastify({
+        text: "Producto eliminado",
+        duration: 1500,
+        close: false,
+        gravity: "top", // `top` or `bottom`
+        position: "left", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "#664259",
+          //borderRadius: "2rem",
+          textTransform: "uppercase",
+          fontSize: ".75rem"
+        },
+        /*offset: {
+            x: '1.5rem', // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+            y: '1.5rem' // vertical axis - can be a number or a string indicating unity. eg: '2em'
+          },*/
+        onClick: function(){} // Callback after click
+      }).showToast();
+
+    const idBoton = e.currentTarget.id
+    const indiceProductoCarrito = carrito.findIndex(p => p.idProducto === idBoton)
+
+    if(carrito[indiceProductoCarrito].cantidad > 1){
+        carrito[indiceProductoCarrito].cantidad --
+    }else{
+        carrito = carrito.filter(p => p.idProducto != idBoton)
+    }
+
+    localStorage.setItem('productosCarrito', JSON.stringify(carrito))
+    cargarCarrito()
+}
+
+function vaciarCarrito (){
+    
+
+    Swal.fire({
+        title: '¿Estás seguro?',
+        icon: 'question',
+        html: `Se van a borrar ${carrito.reduce((acc, producto) => acc + producto.cantidad, 0)} productos.`,
+        showCancelButton: true,
+        focusConfirm: false,
+        confirmButtonText: 'Sí',
+        cancelButtonText: 'No'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            carrito.length = 0;
+            localStorage.setItem('productosCarrito', JSON.stringify(carrito))
+            cargarCarrito()
+        }
+      })
+
+    /*carrito.length = 0
+
+    localStorage.setItem('productosCarrito', JSON.stringify(carrito))
+    cargarCarrito()*/
+}
+
+function total (){
+
+    const totalCalculado = carrito.reduce((acumulador, producto) => acumulador + (producto.precio * producto.cantidad), 0)
+    totalCompra.innerText = `$${totalCalculado}`
+}
+
+function compraRealizada (){
+
+    carrito.length = 0
+    localStorage.setItem('productosCarrito', JSON.stringify(carrito))
+
+    carritoVacio.classList.add('disable')
+    productosCarrito.classList.add('disable')
+    accionesCarrito.classList.add('disable')
+    carritoComprado.classList.remove('disable')
+}
+
+
 cargarProducto(stockProducto)
+cargarCarrito()
